@@ -6,13 +6,12 @@ void estr_init(eStr *str) {
     str->length = 0;
 }
 
-
 bool estr_copy(eStr *str, const char *text) {
     estr_free(str);
-    estr_append(str,text);
+    return estr_append_str(str,text);
 }
 
-bool estr_append(eStr *str, const char *text) {
+bool estr_append_str(eStr *str, const char *text) {
     size_t text_len = strlen(text);
     size_t new_len = str->length + text_len;
 
@@ -25,6 +24,33 @@ bool estr_append(eStr *str, const char *text) {
     str->data = new_data;
     str->length = new_len;
     return true;
+}
+
+bool estr_append_format(eStr *str, const char *format, ...) {
+    va_list args;
+    va_start(args, format);
+
+    int size = vsnprintf(NULL, 0, format, args);
+    if (size < 0) {
+        va_end(args);
+        return false;
+    }
+
+    char *buff = (char *)malloc(size + 1);
+    if (!buff) {
+        va_end(args);
+        return false;
+    }
+
+    vsnprintf(buff, size + 1, format, args);
+
+    va_end(args);
+
+    bool res = estr_append_format(str, buff);
+
+    free(buff);
+
+    return res;
 }
 
 void estr_free(eStr *str) {
