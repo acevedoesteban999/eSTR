@@ -1,9 +1,5 @@
 #include "eStr.h"
 
-typedef struct {
-    char *data;     
-    size_t length;  
-} eStr;
 
 void estr_init(eStr *str) {
     str->data = NULL;

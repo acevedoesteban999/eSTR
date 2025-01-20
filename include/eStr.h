@@ -1,5 +1,11 @@
+#pragma once
 #include <stdlib.h>
 #include <stdbool.h>
+
+typedef struct {
+    char *data;     
+    size_t length;  
+} eStr;
 
 void estr_init(eStr *str);
 
