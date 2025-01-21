@@ -18,17 +18,6 @@ bool estr_copy_str(eStr *str, const char *text) {
     return estr_append_str(str,true, text);
 }
 
-bool estr_copy_format(eStr *str, const char *format, ...) {
-    va_list args;
-    va_start(args, format);
-
-    estr_free(str); 
-
-    bool res = estr_append_format(str, true, format, args); 
-
-    va_end(args); 
-    return res;
-}
 bool estr_append_str(eStr *str, bool is_optimized_for_memory, const char *text ) {
     size_t text_len = strlen(text);
     size_t new_len = str->length + text_len;

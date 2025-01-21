@@ -7,6 +7,12 @@
 
 #define DEFAULT_OPTIMIZE_LEN 256
 
+#define ESTR_COPY_FORMAT(str, format, ...) \
+    do { \
+        estr_free(str); \
+        estr_append_format(str, true, format, __VA_ARGS__); \
+    } while (0)
+
 typedef struct {
     char *data;    
     size_t length; 
@@ -16,8 +22,6 @@ typedef struct {
 extern size_t OPTIMIZE_LEN;
 
 bool estr_copy_str(eStr *str, const char *text);
-
-bool estr_copy_format(eStr *str, const char *format, ...);
 
 bool estr_append_str(eStr *str, bool is_optimized_for_memory , const char *text);
 
