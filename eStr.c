@@ -1,8 +1,13 @@
 #include "eStr.h"
 
+
 size_t OPTIMIZE_LEN = DEFAULT_OPTIMIZE_LEN;
 
-
+void estr_init(eStr *str){
+    str->ptr_char = NULL;
+    str->length = 0;
+    str->capacity = 0;
+}
 
 void estr_free(eStr *str) {
     if (str->ptr_char != NULL) {
