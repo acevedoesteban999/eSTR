@@ -5,9 +5,9 @@ size_t OPTIMIZE_LEN = DEFAULT_OPTIMIZE_LEN;
 
 
 void estr_free(eStr *str) {
-    if (str->data != NULL) {
-        free(str->data); 
-        str->data = NULL;
+    if (str->ptr_char != NULL) {
+        free(str->ptr_char); 
+        str->ptr_char = NULL;
     }
     str->length = 0;
     str->capacity = 0;
@@ -26,16 +26,15 @@ bool estr_append_str(eStr *str, bool is_optimized_for_memory, const char *text )
 
         size_t new_capacity = new_len + ( is_optimized_for_memory ? 0 : OPTIMIZE_LEN ) + 1;
         
-        char *new_data = realloc(str->data, new_capacity); 
-        if (!new_data) {
+        char *new_ptr_char = realloc(str->ptr_char, new_capacity); 
+        if (!new_ptr_char) 
             return false; 
-        }
 
-        str->data = new_data;
+        str->ptr_char = new_ptr_char;
         str->capacity = new_capacity;
     }
 
-    memcpy(str->data + str->length, text, text_len + 1); 
+    memcpy(str->ptr_char + str->length, text, text_len + 1); 
     str->length = new_len;
     return true;
 }

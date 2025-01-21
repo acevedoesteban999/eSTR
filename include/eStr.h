@@ -14,7 +14,7 @@
     } while (0)
 
 typedef struct {
-    char *data;    
+    char * ptr_char;    
     size_t length; 
     size_t capacity;
 } eStr;
