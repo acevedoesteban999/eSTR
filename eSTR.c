@@ -71,7 +71,7 @@ bool estr_append_format(eSTR *str,bool is_optimized_for_memory, const char *form
 bool estr_prepare_str(eSTR *str, size_t capacity) {
     estr_free(str);
     
-    char *new_ptr_char = malloc(capacity);
+    char *new_ptr_char = malloc(capacity + 1);
     if (!new_ptr_char)
         return false;
 
