@@ -7,8 +7,17 @@
 
 #define DEFAULT_OPTIMIZE_LEN 256
 
+
+#define ESTR_MULTIPLE_INIT(...) \
+    do { \
+        eSTR* strs[] = { __VA_ARGS__ }; \
+        for (size_t i = 0; i < sizeof(strs) / sizeof(strs[0]); i++) { \
+            estr_init(strs[i]); \
+        } \
+    } while (0)
+
 //Example: 
-//  eStr str;
+//  eSTR str;
 //  ESTR_COPY_FORMAT(&str,"%i",100);
 #define ESTR_COPY_FORMAT(str_addr, format, ...) \
     do { \
@@ -20,16 +29,18 @@ typedef struct {
     char * ptr_char;    
     size_t length; 
     size_t capacity;
-} eStr;
+} eSTR;
 
 extern size_t OPTIMIZE_LEN;
 
-bool estr_copy_str(eStr *str, const char *text);
+bool estr_copy_str(eSTR *str, const char *text);
 
-bool estr_append_str(eStr *str, bool is_optimized_for_memory , const char *text);
+bool estr_prepare_str(eSTR *str, size_t capacity);
 
-bool estr_append_format(eStr *str,bool is_optimized_for_memory,const char *format, ...);
+bool estr_append_str(eSTR *str, bool is_optimized_for_memory , const char *text);
 
-void estr_init(eStr *str);
+bool estr_append_format(eSTR *str,bool is_optimized_for_memory,const char *format, ...);
 
-void estr_free(eStr *str);
+void estr_init(eSTR *str);
+
+void estr_free(eSTR *str);

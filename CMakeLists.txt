@@ -1,2 +1,6 @@
-idf_component_register(SRCS "eStr.c"
-                    INCLUDE_DIRS "include")
+idf_component_register(
+    SRCS 
+        "eSTR.c"
+    INCLUDE_DIRS 
+        "include"
+)
