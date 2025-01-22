@@ -1,4 +1,4 @@
-#include "eStr.h"
+#include "eSTR.h"
 
 
 size_t OPTIMIZE_LEN = DEFAULT_OPTIMIZE_LEN;
