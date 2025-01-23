@@ -18,6 +18,16 @@ void estr_free(eSTR *str) {
     str->capacity = 0;
 }
 
+bool estr_literal_copy_str(eSTR *str, const char *text,unsigned len) {
+    estr_free(str);
+    if(estr_prepare_str(str,len)){
+        memcpy(str->ptr_char, text, len + 1);
+        str->length = len;
+        return true;
+    }
+    return false;
+}
+
 bool estr_copy_str(eSTR *str, const char *text) {
     estr_free(str);
     return estr_append_str(str,true, text);

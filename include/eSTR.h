@@ -33,6 +33,8 @@ typedef struct {
 
 extern size_t OPTIMIZE_LEN;
 
+bool estr_literal_copy_str(eSTR * str, const char * text, unsigned len);
+
 bool estr_copy_str(eSTR *str, const char *text);
 
 bool estr_prepare_str(eSTR *str, size_t capacity);
