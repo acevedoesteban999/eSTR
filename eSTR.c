@@ -33,8 +33,10 @@ bool estr_copy_str(eSTR *str, const char *text) {
     return estr_append_str(str,true, text);
 }
 
-bool estr_append_str(eSTR *str, bool is_optimized_for_memory, const char *text ) {
-    size_t text_len = strlen(text);
+
+bool estr_append_literal_str(eSTR *str, bool is_optimized_for_memory, const char *text , unsigned len ) {
+    
+    size_t text_len = len;
     size_t new_len = str->length + text_len;
 
     if (new_len + 1 > str->capacity) {
@@ -52,6 +54,11 @@ bool estr_append_str(eSTR *str, bool is_optimized_for_memory, const char *text )
     memcpy(str->ptr_char + str->length, text, text_len + 1); 
     str->length = new_len;
     return true;
+}
+
+
+bool estr_append_str(eSTR *str, bool is_optimized_for_memory, const char *text ) {
+    return estr_append_literal_str(str,is_optimized_for_memory,text,strlen(text));
 }
 
 bool estr_append_format(eSTR *str,bool is_optimized_for_memory, const char *format, ...) {

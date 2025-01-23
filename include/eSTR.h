@@ -37,6 +37,8 @@ bool estr_literal_copy_str(eSTR * str, const char * text, unsigned len);
 
 bool estr_copy_str(eSTR *str, const char *text);
 
+bool estr_append_literal_str(eSTR * str, bool is_optimized_for_memory, const char * text, unsigned len);
+
 bool estr_prepare_str(eSTR *str, size_t capacity);
 
 bool estr_append_str(eSTR *str, bool is_optimized_for_memory , const char *text);
