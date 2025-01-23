@@ -18,6 +18,14 @@ void estr_free(eSTR *str) {
     str->capacity = 0;
 }
 
+
+void estr_clear(eSTR *str){
+
+    str->length = 0;
+    if(str->ptr_char)
+        str->ptr_char[0] = '\0';
+}
+
 bool estr_literal_copy_str(eSTR *str, const char *text,unsigned len) {
     estr_free(str);
     if(estr_prepare_str(str,len)){

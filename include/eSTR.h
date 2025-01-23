@@ -47,4 +47,6 @@ bool estr_append_format(eSTR *str,bool is_optimized_for_memory,const char *forma
 
 void estr_init(eSTR *str);
 
+void estr_clear(eSTR *str);
+
 void estr_free(eSTR *str);
