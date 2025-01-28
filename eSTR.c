@@ -10,10 +10,10 @@ void estr_init(eSTR *str){
 }
 
 void estr_free(eSTR *str) {
-    if (str->ptr_char != NULL) {
+    if (str->ptr_char != NULL && str->capacity > 0) {
         free(str->ptr_char); 
-        str->ptr_char = NULL;
     }
+    str->ptr_char = NULL;
     str->length = 0;
     str->capacity = 0;
 }
